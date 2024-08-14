@@ -1,27 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
-const LoginPage = () => {
+const LoginPage = ({ login }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [role, setRole] = useState('student'); // Default role
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      const response = await axios.post('/api/login', { email, password });
-      
-      const { token } = response.data;
-
-      localStorage.setItem('token', token);
-
-      navigate('/admin');
-    } catch (err) {
-      setError('Login failed. Please check your credentials.');
-    }
+    login(role);
+    navigate('/');
   };
 
   return (
@@ -29,8 +18,6 @@ const LoginPage = () => {
       <div className="w-full max-w-md p-8 m-auto bg-white rounded-lg shadow-xl">
         <h2 className="text-center text-3xl font-extrabold text-gray-900">Welcome Back!</h2>
         <p className="text-center text-gray-500 mt-2">Enter your account details below</p>
-
-        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
         <div className="mt-6">
           <button
@@ -74,6 +61,19 @@ const LoginPage = () => {
               className="w-full py-2 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               placeholder="Password"
             />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 font-semibold">Role</label>
+            <select
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className="w-full py-2 px-4 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+            >
+              <option value="admin">Admin</option>
+              <option value="teacher">Teacher</option>
+              <option value="student">Student</option>
+            </select>
           </div>
 
           <button

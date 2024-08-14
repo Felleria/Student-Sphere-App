@@ -5,7 +5,7 @@ const Attendance = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5001/attendances')  // Update the API endpoint URL
+    fetch('http://127.0.0.1:5555/attendances')  // Update the API endpoint URL
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

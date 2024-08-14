@@ -6,7 +6,7 @@ const AssignedTeachers = () => {
   const [loading, setLoading] = useState(true); // Added loading state
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5551/teachers')
+    fetch('http://127.0.0.1:5555/teachers')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -61,4 +61,3 @@ const AssignedTeachers = () => {
 };
 
 export default AssignedTeachers;
-

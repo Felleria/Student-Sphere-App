@@ -6,7 +6,7 @@ const Grades = () => {
 
   useEffect(() => {
     // Fetching grades data from the API
-    fetch('http://127.0.0.1:5001/grades')
+    fetch('http://127.0.0.1:5555/grades')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

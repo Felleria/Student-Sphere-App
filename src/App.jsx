@@ -11,7 +11,8 @@ import ContactPage from './pages/ContactPage';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userRole, setUserRole] = useState(null); 
+  const [userRole, setUserRole] = useState(null); // For handling different user roles
+
   const login = (role) => {
     setIsAuthenticated(true);
     setUserRole(role);

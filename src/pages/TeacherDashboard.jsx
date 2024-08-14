@@ -1,8 +1,31 @@
+
+/*import Sidebar from '../components/Sidebar';
+import { Outlet } from 'react-router-dom';
+
+const teacherLinks = [
+  { name: 'Manage Grades', path: 'manage-grades' },
+  { name: 'Manage Attendance', path: 'manage-attendance' },
+  { name: 'Manage Courses', path: 'manage-courses' },
+];
+
+const TeacherDashboard = () => {
+  return (
+    <div className="flex">
+      <Sidebar links={teacherLinks} />
+      <div className="flex-1 p-6 bg-gray-100">
+        <Outlet />
+      </div>
+    </div>
+  );
+};
+
+export default TeacherDashboard;
+*/
+// src/pages/TeacherDashboard.jsx
 import { Link, Routes, Route } from 'react-router-dom';
 import ManageGrades from '../components/teacher/ManageGrades';
 import ManageAttendance from '../components/teacher/ManageAttendance';
 import ManageCourses from '../components/teacher/ManageCourses';
-import ManageStudents from '../components/teacher/ManageStudents'
 
 const TeacherDashboard = () => {
   return (
@@ -19,9 +42,6 @@ const TeacherDashboard = () => {
             <li>
               <Link to="manage-courses" className="hover:text-gray-300">Manage Courses</Link>
             </li>
-            <li>
-              <Link to="manage-students" className="hover:text-gray-300">Manage Students</Link>
-            </li>
           </ul>
         </nav>
       </aside>
@@ -30,7 +50,6 @@ const TeacherDashboard = () => {
           <Route path="manage-grades" element={<ManageGrades />} />
           <Route path="manage-attendance" element={<ManageAttendance />} />
           <Route path="manage-courses" element={<ManageCourses />} />
-          <Route path="manage-students" element={<ManageStudents />} />
         </Routes>
       </main>
     </div>
