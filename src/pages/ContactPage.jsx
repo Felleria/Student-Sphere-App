@@ -1,5 +1,5 @@
-// frontend/src/ContactPage.js
 import { useState } from 'react';
+import emailjs from 'emailjs-com';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -24,20 +24,22 @@ const ContactPage = () => {
     setError('');
     setSuccess(false);
 
-    try {
-      const response = await fetch('http://localhost:5000/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+    const serviceID = 'service_k4f6qjs';  // Replace with your EmailJS service ID
+    const templateID = 'template_1v5gk0p';  // Replace with your EmailJS template ID
+    const userID = 'SdTxPhn7cXAy_Fx9K';  // Replace with your EmailJS user ID
 
-      if (response.ok) {
+    try {
+      const response = await emailjs.send(serviceID, templateID, formData, userID);
+
+      if (response.status === 200) {
         setSuccess(true);
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
       } else {
-        const data = await response.json();
-        setError(data.message || 'Failed to send message. Please try again later.');
+        setError('Failed to send message. Please try again later.');
       }
     } catch (err) {
       setError('An error occurred. Please try again later.');
